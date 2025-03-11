@@ -1,0 +1,101 @@
+
+<!--
+the main file for the page 
+index.html
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Video Player - Hesham Hegazy</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="stylesheet" href="/static/main.css">
+        <style>
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                margin-top: 50px;
+                background: #1e1e1e;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+            }
+            .logo img {
+                display: block;
+                margin: 0 auto;
+                width: 80px;
+            }
+            h4 {
+                text-align: center;
+                margin-top: 10px;
+                font-weight: bold;
+            }
+            .form-control {
+                background: #2a2a2a;
+                border: none;
+                color: white;
+            }
+            .form-control::placeholder {
+                color: #bdbdbd;
+            }
+            .btn-info {
+                background-color: #2196F3;
+                border: none;
+            }
+            .btn-info:hover {
+                background-color: #1976D2;
+            }
+            .btn-success {
+                background-color: #4CAF50;
+                border: none;
+            }
+            .btn-success:hover {
+                background-color: #388E3C;
+            }
+            .upload_from_local {
+                margin-top: 15px;
+            }
+            .btn i {
+                margin-right: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <section class="container">
+            <div class="row logo">
+                <img src="/static/Media-Player-Classic-1.png" alt="Media Player Logo">
+                <h4><i class="fas fa-play-circle"></i> Video Player</h4>
+            </div>
+            <div class="row">
+                <form action="/v/">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input type="url" name="url" required
+                                placeholder="Enter Video URL" class="form-control">
+                        </div>
+                    </div> 
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <button class="btn btn-block btn-lg btn-info">
+                                <i class="fas fa-paper-plane"></i> Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="upload_from_local">
+                    <button class="btn btn-block btn-lg btn-success">
+                        <i class="fas fa-upload"></i> Upload from Local
+                    </button>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+

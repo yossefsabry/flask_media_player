@@ -1,0 +1,24 @@
+# Enviroments
+env/
+.env/
+tmp/
+
+# Basics
+*.py[cod]
+*.pyc
+__pycache__
+
+# Logs
+*.log
+pip-log.txt
+
+# Vim
+*~
+*.swp
+*.swo
+
+./venv
+./venv/
+venv
+./venv/*
+./*/venv/
