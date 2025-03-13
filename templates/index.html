@@ -1,10 +1,4 @@
 
-<!--
-the main file for the page 
-index.html
--->
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -89,13 +83,29 @@ index.html
                         </div>
                     </div>
                 </form>
+
                 <div class="upload_from_local">
-                    <button class="btn btn-block btn-lg btn-success">
+                    <input type="file" id="videoUpload" accept="video/*" style="display: none;">
+                    <button class="btn btn-block btn-lg btn-success" onclick="uploadVideo()">
                         <i class="fas fa-upload"></i> Upload from Local
                     </button>
                 </div>
             </div>
         </section>
+        <script>
+        function uploadVideo() {
+            let input = document.getElementById('videoUpload');
+            input.click(); // allowing check for choosing file
+            input.onchange = function () {
+                // check if there any file choose in upload
+                if (input.files.length > 0) {
+                    let fileURL = URL.createObjectURL(input.files[0]);
+                    // passing the location video for url
+                    window.location.href = `/local-video?url=${encodeURIComponent(fileURL)}`;
+                }
+            };
+        }
+        </script>
     </body>
 </html>
 

@@ -1,117 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://vjs.zencdn.net/8.3.0/video-js.css">
-    <link rel="stylesheet" href="/static/main.css">
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simple Video Player</title>
+
+        <!-- Include basic styling -->
+        <style>
         body {
             background-color: #121212;
             color: #e0e0e0;
             font-family: Arial, sans-serif;
-        }
-        .container {
-            margin-top: 50px;
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
             text-align: center;
+            padding: 20px;
         }
         .video-container {
             margin-top: 20px;
-        }
-        .url a {
-            color: #bb86fc;
-            text-decoration: none;
-            font-size: 18px;
-        } .url a:hover {
-            text-decoration: underline;
         }
         iframe, video {
             border-radius: 10px;
             width: 100%;
             max-width: 800px;
-            height: auto;
+            height: 600px; /* Set video height */
         }
-    </style>
-</head>
-<body>
-    <section class="container">
-        <h2><i class="fas fa-video"></i> Video Player</h2>
-        <div class="row">
-            <div class="video-container col-md-12">
-                <div class="url"><a href="{{ url }}" target="_blank">
-                <i class="fas fa-link"></i> {{ url }}</a></div>
-                {% if "youtube.com" in url or "youtu.be" in url %}
-                    {% if "youtube.com" in url %}
-                        {% set video_id = url.split('v=')[-1].split('&')[0] %}
-                    {% elif "youtu.be" in url %}
-                        {% set video_id = url.split('/')[-1].split('?')[0] %}
-                    {% endif %}
-                    <iframe src="https://www.youtube.com/embed/{{ video_id }}" 
-                        frameborder="0" allowfullscreen>
-                    </iframe>
-                {% else %}
-                    <video id="video-1" class="video-js vjs-default-skin" controls>
-                        <source src="{{ url }}" type="video/mp4">
-                    </video>
-                {% endif %}
-            </div>
+        a {
+            color: #bb86fc;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <h2>🎥 Simple Video Player</h2>
+
+        <!-- url for vidoe-->
+        <a href="{{ url }}" target="_blank" class="block">🔗 {{ url }}</a>
+        <!-- Display URL as a clickable link -->
+        <div class="video-container">
+
+            <!-- Handle YouTube or direct video links -->
+            {% if "youtube.com" in url or "youtu.be" in url %}
+            {% set video_id = url.split('v=')[-1].split('&')[0] if 
+                "youtube.com" in url else url.split('/')[-1].split('?')[0] 
+            %}
+            <iframe 
+                class="block"
+                src="https://www.youtube.com/embed/{{ video_id }}" frameborder="0" allowfullscreen>
+            </iframe>
+            {% else %}
+            <video controls autoplay>
+                <source src="{{ url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            {% endif %}
         </div>
-    </section>
 
-    <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script>
-    <script src="https://cdn.sc.gl/videojs-hotkeys/latest/videojs.hotkeys.min.js"></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var videoElement = document.getElementById("video-1");
-        if (videoElement) {
-            var video = videojs("video-1", {
-                autoplay: true,
-                preload: "auto",
-                controls: true,
-                aspectRatio: "16:9",
-                playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 2]
-            });
-
-            video.ready(function() {
-                this.hotkeys({
-                    volumeStep: 0.1,
-                    seekStep: 5,
-                    enableModifiersForNumbers: true,
-                    alwaysCaptureHotkeys: true,
-                    customKeys: {
-                        speedUp: {
-                            key: function(event) {
-                                return event.shiftKey && event.key === ">";
-                            },
-                            handler: function(player) {
-                                var rates = player.options_.playbackRates;
-                                var index = rates.indexOf(player.playbackRate());
-                                if (index < rates.length - 1) player.playbackRate(rates[index + 1]);
-                            }
-                        },
-                        speedDown: {
-                            key: function(event) {
-                                return event.shiftKey && event.key === "<";
-                            },
-                            handler: function(player) {
-                                var rates = player.options_.playbackRates;
-                                var index = rates.indexOf(player.playbackRate());
-                                if (index > 0) player.playbackRate(rates[index - 1]);
-                            }
-                        }
-                    }
-                });
-            });
-        }
-    });
-    </script>
-</body>
+        <!-- Back link -->
+        <br><a href="/">⬅️ Back to Home</a>
+    </body>
 </html>
 
