@@ -28,13 +28,13 @@ def videoplayer():
     return render_template('videoplayer.html', url=request.args.get('url')) 
 
 
-## for production
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0', port=10000) 
-#     # app.run(host='0.0.0.0', debug=True)
+## for production temp
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=10000) 
+    # app.run(host='0.0.0.0', debug=True)
 
 
 ## for deploy
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port)
+# if __name__ == '__main__':
+#     port = int(os.environ.get("PORT", 10000))
+#     app.run(host='0.0.0.0', port=port)
