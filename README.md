@@ -65,3 +65,8 @@ http://127.0.0.1:5000/v/?url=https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ```ruby
 http://127.0.0.1:5000/local-video?url=/static/sample.mp4 
 ```
+
+deploy vercel:
+```ruby
+https://flask-media-player.vercel.app/
+```
