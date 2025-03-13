@@ -22,3 +22,8 @@ pip-log.txt
 venv
 ./venv/*
 ./*/venv/
+
+./node_modules
+./node_modules/
+node_modules/
+
