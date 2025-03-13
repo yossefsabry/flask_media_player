@@ -1,3 +1,4 @@
+import os
 from urllib.parse import unquote ## for allow transmits bits over the server
 from flask import Flask, render_template, request, redirect
 
@@ -26,7 +27,14 @@ def videoplayer():
     ## passing url for vidoe
     return render_template('videoplayer.html', url=request.args.get('url')) 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000) 
-    # app.run(host='0.0.0.0', debug=True)
 
+## for production
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=10000) 
+#     # app.run(host='0.0.0.0', debug=True)
+
+
+## for deploy
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
