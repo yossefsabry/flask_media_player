@@ -27,5 +27,5 @@ def videoplayer():
     return render_template('videoplayer.html', url=request.args.get('url')) 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)  # Enable auto-reload
+    app.run(host='0.0.0.0', port=10000) 
 
