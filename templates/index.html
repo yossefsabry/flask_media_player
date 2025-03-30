@@ -83,14 +83,25 @@
                     </div>
                 </form>
 
-                <div class="upload_from_local">
-                    <input type="file" id="videoUpload" accept="video/*" style="display: none;">
-                    <button class="btn btn-block btn-lg btn-success" onclick="uploadVideo()">
+                <form class="upload_from_local" action="/local-video" method="POST" 
+                        enctype="multipart/form-data">
+                    <input type="file" id="videoUpload" name="videoUpload" 
+                        accept="video/*" style="display: none;" />
+                    <button type="button" class="btn btn-block btn-lg btn-success" 
+                        onclick="document.getElementById('videoUpload').click();">
                         Upload Video <i class="fas fa-upload"></i>
                     </button>
-                </div>
+                </form>
+
             </div>
         </section>
+        <script>
+            document.getElementById('videoUpload').addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    this.form.submit();  // Automatically submit form when a file is chosen
+                }
+            });
+        </script>
     </body>
 </html>
 
