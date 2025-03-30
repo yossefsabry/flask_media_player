@@ -10,92 +10,23 @@
 
         <!-- Font Awesome for icons -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../static/main.css">
 
-        <!-- Custom Dark Mode Styles -->
-        <style>
-        /* Dark Mode by Default */
-        body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #121212;
-            color: #f8f9fa;
-            transition: 0.3s ease;
-        }
-
-        .container {
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-            transition: 0.3s ease;
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #f8f9fa;
-        }
-
-        video {
-            border: 2px solid #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .btn-home {
-            margin-top: 15px;
-            background-color: #343a40;
-            border-color: #343a40;
-            color: #f8f9fa;
-        }
-
-        .btn-home:hover {
-            background-color: #495057;
-            border-color: #495057;
-        }
-
-        .no-video {
-            color: #f06c64;
-            font-size: 1.2rem;
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            width: 100%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        .responsive-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        </style>
     </head>
 
     <body>
 
         <div class="container">
-            <h1>
+            <h2>
                 Local Video Player
-            </h1>
+            </h2>
 
-            <!-- checking if found a url from server passing param -->
-            {% if video_url %}
-            <div class="video-wrapper">
-                <video class="responsive-video" controls>
-                    <source src="{{ video_url }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+            {% if uploaded_video %}
+            <h2>Uploaded Video:</h2>
+            <video width="640" height="360" controls autoplay>
+                <source src="{{ url_for('uploaded_file', filename=uploaded_video) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
 
             <!-- if there is no video found -->
             {% else %} 
@@ -112,4 +43,21 @@
 
     </body>
 </html>
+<!---->
 
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Local Video</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    {% if uploaded_video %}-->
+<!--        <h2>Uploaded Video:</h2>-->
+<!--        <video width="640" height="360" controls>-->
+<!--            <source src="{{ url_for('uploaded_file', filename=uploaded_video) }}" type="video/mp4">-->
+<!--            Your browser does not support the video tag.-->
+<!--        </video>-->
+<!--    {% endif %}-->
+<!--</body>-->
+<!--</html>-->
