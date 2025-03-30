@@ -28,3 +28,5 @@ venv
 node_modules/
 
 .vercel
+./*/*.mq4
+./*.mp4
