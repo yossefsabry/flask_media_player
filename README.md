@@ -70,3 +70,9 @@ deploy vercel:
 ```ruby
 https://flask-media-player.vercel.app/
 ```
+
+## for more information about the code
+```ruby
+https://yossefsabrynote.netlify.app/github-com/projects/flask-media-player/flask-media-player-l1/
+```
+
