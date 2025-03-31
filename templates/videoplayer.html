@@ -23,6 +23,10 @@
         <div class="video-container">
 
             <!-- Handle YouTube or direct video links -->
+            <!-- Check if the URL is a YouTube link -->
+            <!-- and gettting the video id for youtube video -->
+            <!-- references: -->
+            <!-- https://stackoverflow.com/questions/3452546/how-do-i-get-the-youtube-video-id-from-a-url -->
             {% if "youtube.com" in url or "youtu.be" in url %}
             {% set video_id = url.split('v=')[-1].split('&')[0] if 
                 "youtube.com" in url else url.split('/')[-1].split('?')[0] 
@@ -31,6 +35,7 @@
                 class="block"
                 src="https://www.youtube.com/embed/{{ video_id }}" frameborder="0" allowfullscreen>
             </iframe>
+            <!-- if not video is youtube video -->
             {% else %}
             <video controls autoplay>
                 <source src="{{ url }}" type="video/mp4">

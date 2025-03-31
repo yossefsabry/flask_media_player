@@ -42,23 +42,60 @@
                         </button>
                     </form>
                 </div>
-
             </div>
+
+            <button id="recordButton" class="btn btn-primary">Start Camera Recording</button>
+            <video id="preview" width="320" height="240" autoplay muted style="display: none;"></video>
+
         </section>
+        <script>
+            // Camera Recording
+            const recordButton = document.getElementById('recordButton');
+            const preview = document.getElementById('preview');
+            let mediaRecorder;
+            let recordedChunks = [];
+            let isRecording = false;
+
+            recordButton.addEventListener('click', async () => {
+                if (!isRecording) {
+                    try {
+                        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                        preview.srcObject = stream;
+                        preview.style.display = 'block';
+                        recordButton.textContent = 'Stop Recording';
+
+                        mediaRecorder = new MediaRecorder(stream);
+                        mediaRecorder.ondataavailable = event => {
+                            if (event.data.size > 0) {
+                                recordedChunks.push(event.data);
+                            }
+                        };
+                        mediaRecorder.onstop = () => {
+                            const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                            const a = document.createElement('a');
+                            a.href = URL.createObjectURL(blob);
+                            a.download = 'recorded-video.webm';
+                            a.click();
+                            preview.srcObject = null;
+                            stream.getTracks().forEach(track => track.stop());
+                            recordedChunks = [];
+                            isRecording = false;
+                            recordButton.textContent = 'Start Camera Recording';
+                            preview.style.display = 'none';
+
+                        };
+
+                        mediaRecorder.start();
+                        isRecording = true;
+
+                    } catch (error) {
+                        console.error('Error accessing camera:', error);
+                    }
+                } else {
+                    mediaRecorder.stop();
+                }
+            });
+
+        </script>
     </body>
 </html>
-
-
-
-
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--    <title>Home</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--</body>-->
-<!--</html>-->
