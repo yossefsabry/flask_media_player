@@ -1,4 +1,10 @@
+
+
+
+
 # Flask Video Player
+![flask media player](./flask_media_player.png)
+
 A simple video player web application built using Flask, Jinja2, Bootstrap, and FontAwesome. This application allows users to stream local and online videos, including YouTube links.
 
 # Features

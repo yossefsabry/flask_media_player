@@ -29,7 +29,7 @@
             <!-- https://stackoverflow.com/questions/3452546/how-do-i-get-the-youtube-video-id-from-a-url -->
             {% if "youtube.com" in url or "youtu.be" in url %}
             {% set video_id = url.split('v=')[-1].split('&')[0] if 
-                "youtube.com" in url else url.split('/')[-1].split('?')[0] 
+            "youtube.com" in url else url.split('/')[-1].split('?')[0] 
             %}
             <iframe 
                 class="block"
